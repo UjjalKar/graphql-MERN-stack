@@ -1,5 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server');
-const crypto = require('crypto');
+const { ApolloServer, gql } = require('apollo-server')
+const crypto = require('crypto')
 const db = {
   users: [
     { id: '1', email: 'ujal@mail.com', name: 'Ujjal' },
@@ -25,7 +25,7 @@ const db = {
       createdAt: Date.now()
     }
   ]
-};
+}
 
 // class User {
 //   constructor(user) {
@@ -35,6 +35,7 @@ const db = {
 //     return db.messages.filter(msg => msg.userId === this.id);
 //   }
 // }
+// MERN Stack & GraphQL - #4 Apollo Server with Express 21.44
 
 const typeDefs = gql`
   type Query {
@@ -58,7 +59,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(email: String!, name: String): User
   }
-`;
+`
 
 const resolvers = {
   Query: {
@@ -72,16 +73,16 @@ const resolvers = {
         id: crypto.randomBytes(10).toString('hex'),
         email,
         name
-      };
-      db.users.push(user);
-      return user;
+      }
+      db.users.push(user)
+      return user
     }
   },
   User: {
     messages: user => db.messages.filter(msg => msg.userId === user.id)
   }
-};
+}
 
 // const server = new ApolloServer({ typeDefs, mocks: true });
-const server = new ApolloServer({ typeDefs, resolvers });
-server.listen().then(({ url }) => console.log(url));
+const server = new ApolloServer({ typeDefs, resolvers })
+server.listen().then(({ url }) => console.log(url))
