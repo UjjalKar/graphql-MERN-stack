@@ -4,9 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "watch": "nodemon"
+    "dev": "set NODE_ENV=development && nodemon -r esm ./src",
+    "start": "set NODE_ENV=production && nodemon -r esm ./src",
+    "lint": "npx standard --fix"
   },
   "dependencies": {
-    "graphql": "^14.6.0"
+    "apollo-server-express": "^2.9.16",
+    "bcryptjs": "^2.4.3",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "mongoose": "^5.8.11"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1"
   }
 }
